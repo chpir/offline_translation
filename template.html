@@ -4,8 +4,18 @@
     <meta charset="utf-8">
     <title>Offline translation</title>
   </head>
+  <!--
+    The following minified JavaScript libraries are included in this file:
+    - Javascript MD5: Paul Johnston - http://pajhome.org.uk/crypt/md5/ - BSD license
+    - jQuery SimpleModal: Eric Martin - http://www.ericmmartin.com/projects/simplemodal/ - CC BY-SA 3.0
+    - jStorage: Andris Reinman - http://www.jstorage.info/ - MIT license
+    - jquery-json: Brantley Harris - http://code.google.com/p/jquery-json/ - MIT license
+  -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 <script type="text/javascript">
+  /*
+    © 2001-2011 Eric Martin - http://creativecommons.org/licenses/by-sa/3.0/us/
+  */
   // jquery simplemodal
 (function(b){var j=b.browser.msie&&parseInt(b.browser.version)===6&&typeof window.XMLHttpRequest!=="object",l=b.browser.msie&&parseInt(b.browser.version)===7,k=null,e=[];b.modal=function(a,c){return b.modal.impl.init(a,c)};b.modal.close=function(){b.modal.impl.close()};b.modal.focus=function(a){b.modal.impl.focus(a)};b.modal.setContainerDimensions=function(){b.modal.impl.setContainerDimensions()};b.modal.setPosition=function(){b.modal.impl.setPosition()};b.modal.update=function(a,c){b.modal.impl.update(a,
 c)};b.fn.modal=function(a){return b.modal.impl.init(this,a)};b.modal.defaults={appendTo:"body",focus:true,opacity:50,overlayId:"simplemodal-overlay",overlayCss:{},containerId:"simplemodal-container",containerCss:{},dataId:"simplemodal-data",dataCss:{},minHeight:null,minWidth:null,maxHeight:null,maxWidth:null,autoResize:false,autoPosition:true,zIndex:1E3,close:true,closeHTML:'<a class="modalCloseImg" title="Close"></a>',closeClass:"simplemodal-close",escClose:true,overlayClose:false,position:null,
@@ -30,6 +40,18 @@ else{a.d.data.hide().remove();c.replaceWith(a.d.orig)}}else a.d.data.hide().remo
 </script>
 
 <script type="text/javascript">
+/*
+Copyright (c) 1998 - 2009, Paul Johnston & Contributors
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+Neither the name of the author nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 var hexcase=0,b64pad="";function hex_md5(c){return rstr2hex(rstr_md5(str2rstr_utf8(c)))}function b64_md5(c){return rstr2b64(rstr_md5(str2rstr_utf8(c)))}function any_md5(c,g){return rstr2any(rstr_md5(str2rstr_utf8(c)),g)}function hex_hmac_md5(c,g){return rstr2hex(rstr_hmac_md5(str2rstr_utf8(c),str2rstr_utf8(g)))}function b64_hmac_md5(c,g){return rstr2b64(rstr_hmac_md5(str2rstr_utf8(c),str2rstr_utf8(g)))}
 function any_hmac_md5(c,g,a){return rstr2any(rstr_hmac_md5(str2rstr_utf8(c),str2rstr_utf8(g)),a)}function md5_vm_test(){return hex_md5("abc").toLowerCase()=="900150983cd24fb0d6963f7d28e17f72"}function rstr_md5(c){return binl2rstr(binl_md5(rstr2binl(c),c.length*8))}
 function rstr_hmac_md5(c,g){var a=rstr2binl(c);if(a.length>16)a=binl_md5(a,c.length*8);for(var b=Array(16),d=Array(16),e=0;e<16;e++){b[e]=a[e]^909522486;d[e]=a[e]^1549556828}a=binl_md5(b.concat(rstr2binl(g)),512+g.length*8);return binl2rstr(binl_md5(d.concat(a),640))}function rstr2hex(c){for(var g=hexcase?"0123456789ABCDEF":"0123456789abcdef",a="",b,d=0;d<c.length;d++){b=c.charCodeAt(d);a+=g.charAt(b>>>4&15)+g.charAt(b&15)}return a}
@@ -48,7 +70,27 @@ function md5_hh(c,g,a,b,d,e,f){return md5_cmn(g^a^b,c,g,d,e,f)}function md5_ii(c
 </script>
 
 <script type="text/javascript">
+  /*
+Copyright (c) 2011 - Brantley Harris and other contributors
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+  */
   // jquery.json
 (function(e){e.toJSON=function(a){if(typeof JSON=="object"&&JSON.stringify)return JSON.stringify(a);var b=typeof a;if(a===null)return"null";if(b!="undefined"){if(b=="number"||b=="boolean")return a+"";if(b=="string")return e.quoteString(a);if(b=="object"){if(typeof a.toJSON=="function")return e.toJSON(a.toJSON());if(a.constructor===Date){var c=a.getUTCMonth()+1;if(c<10)c="0"+c;var d=a.getUTCDate();if(d<10)d="0"+d;b=a.getUTCFullYear();var f=a.getUTCHours();if(f<10)f="0"+f;var g=a.getUTCMinutes();if(g<
 10)g="0"+g;var h=a.getUTCSeconds();if(h<10)h="0"+h;a=a.getUTCMilliseconds();if(a<100)a="0"+a;if(a<10)a="0"+a;return'"'+b+"-"+c+"-"+d+"T"+f+":"+g+":"+h+"."+a+'Z"'}if(a.constructor===Array){c=[];for(d=0;d<a.length;d++)c.push(e.toJSON(a[d])||"null");return"["+c.join(",")+"]"}c=[];for(d in a){b=typeof d;if(b=="number")b='"'+d+'"';else if(b=="string")b=e.quoteString(d);else continue;if(typeof a[d]!="function"){f=e.toJSON(a[d]);c.push(b+":"+f)}}return"{"+c.join(", ")+"}"}}};e.evalJSON=function(a){if(typeof JSON==
@@ -56,6 +98,25 @@ function md5_hh(c,g,a,b,d,e,f){return md5_cmn(g^a^b,c,g,d,e,f)}function md5_ii(c
 function(b){var c=j[b];if(typeof c==="string")return c;c=b.charCodeAt();return"\\u00"+Math.floor(c/16).toString(16)+(c%16).toString(16)})+'"';return'"'+a+'"'};var i=/["\\\x00-\x1f\x7f-\x9f]/g,j={"\u0008":"\\b","\t":"\\t","\n":"\\n","\u000c":"\\f","\r":"\\r",'"':'\\"',"\\":"\\\\"}})(jQuery);
 </script>
 <script type="text/javascript">
+  /*
+Copyright (c) 2010 Andris Reinman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+  */
   // jStorage
 (function(f){if(!f||!(f.toJSON||Object.toJSON||window.JSON)){throw new Error("jQuery, MooTools or Prototype needs to be loaded before jStorage!")}var g={},d={jStorage:"{}"},h=null,j=0,l=f.toJSON||Object.toJSON||(window.JSON&&(JSON.encode||JSON.stringify)),e=f.evalJSON||(window.JSON&&(JSON.decode||JSON.parse))||function(m){return String(m).evalJSON()},i=false;_XMLService={isXML:function(n){var m=(n?n.ownerDocument||n:0).documentElement;return m?m.nodeName!=="HTML":false},encode:function(n){if(!this.isXML(n)){return false}try{return new XMLSerializer().serializeToString(n)}catch(m){try{return n.xml}catch(o){}}return false},decode:function(n){var m=("DOMParser" in window&&(new DOMParser()).parseFromString)||(window.ActiveXObject&&function(p){var q=new ActiveXObject("Microsoft.XMLDOM");q.async="false";q.loadXML(p);return q}),o;if(!m){return false}o=m.call("DOMParser" in window&&(new DOMParser())||window,n,"text/xml");return this.isXML(o)?o:false}};function k(){if("localStorage" in window){try{if(window.localStorage){d=window.localStorage;i="localStorage"}}catch(p){}}else{if("globalStorage" in window){try{if(window.globalStorage){d=window.globalStorage[window.location.hostname];i="globalStorage"}}catch(o){}}else{h=document.createElement("link");if(h.addBehavior){h.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(h);h.load("jStorage");var n="{}";try{n=h.getAttribute("jStorage")}catch(m){}d.jStorage=n;i="userDataBehavior"}else{h=null;return}}}b()}function b(){if(d.jStorage){try{g=e(String(d.jStorage))}catch(m){d.jStorage="{}"}}else{d.jStorage="{}"}j=d.jStorage?String(d.jStorage).length:0}function c(){try{d.jStorage=l(g);if(h){h.setAttribute("jStorage",d.jStorage);h.save("jStorage")}j=d.jStorage?String(d.jStorage).length:0}catch(m){}}function a(m){if(!m||(typeof m!="string"&&typeof m!="number")){throw new TypeError("Key name must be string or numeric")}return true}f.jStorage={version:"0.1.5.0",set:function(m,n){a(m);if(_XMLService.isXML(n)){n={_is_xml:true,xml:_XMLService.encode(n)}}g[m]=n;c();return n},get:function(m,n){a(m);if(m in g){if(typeof g[m]=="object"&&g[m]._is_xml&&g[m]._is_xml){return _XMLService.decode(g[m].xml)}else{return g[m]}}return typeof(n)=="undefined"?null:n},deleteKey:function(m){a(m);if(m in g){delete g[m];c();return true}return false},flush:function(){g={};c();try{window.localStorage.clear()}catch(m){}return true},storageObj:function(){function m(){}m.prototype=g;return new m()},index:function(){var m=[],n;for(n in g){if(g.hasOwnProperty(n)){m.push(n)}}return m},storageSize:function(){return j},currentBackend:function(){return i},storageAvailable:function(){return !!i},reInit:function(){var m,o;if(h&&h.addBehavior){m=document.createElement("link");h.parentNode.replaceChild(m,h);h=m;h.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(h);h.load("jStorage");o="{}";try{o=h.getAttribute("jStorage")}catch(n){}d.jStorage=o;i="userDataBehavior"}b()}};k()})(window.jQuery||window.$);
 </script>
